@@ -2,10 +2,6 @@ name: CloudFormation PR Validation
 
 on:
   pull_request:
-    types:
-      - opened
-      - synchronize
-      - reopened
     paths:
       - 'cloudformation/**'
 
