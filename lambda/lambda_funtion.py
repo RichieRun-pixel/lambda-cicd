@@ -3,5 +3,5 @@ import json
 def lambda_handler(event, context):
     return {
         'statusCode': 200,
-        'body': json.dumps('final update to zip folder')
+        'body': json.dumps('update lambda function name')
     }

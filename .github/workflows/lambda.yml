@@ -37,7 +37,7 @@ jobs:
           pip install -r requirements.txt -t .
           zip -r lambda_function.zip .
           aws lambda update-function-code \
-            --function-name my-lambda-function \
+            --function-name my-test-cicd-lambda \
             --zip-file fileb://lambda_function.zip  
 
 
