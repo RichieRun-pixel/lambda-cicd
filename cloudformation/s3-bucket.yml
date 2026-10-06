@@ -1,0 +1,25 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Description: 'S3 Bucket for Lambda CICD Pipeline'
+
+Parameters:
+  Environment:
+    Type: String
+    Default: test
+
+Resources:
+  MyS3Bucket:
+    Type: AWS::S3::Bucket
+    Properties:
+      BucketName:
+        Fn::Sub:
+          - "${AWS::StackName}-${Environment}-bucket"
+          - Environment: !Ref Environment
+      Tags:
+        - Key: Environment
+          Value: !Ref Environment
+
+Outputs:
+  BucketName:
+    Description: "Name of the S3 bucket"
+    Value: !Ref MyS3Bucket
+  
