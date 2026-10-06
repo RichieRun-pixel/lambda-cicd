@@ -5,6 +5,10 @@ Parameters:
   Environment:
     Type: String
     Default: test
+    AllowedValues:  
+      - test
+      - staging
+      - prod
 
 Resources:
   MyS3Bucket:
