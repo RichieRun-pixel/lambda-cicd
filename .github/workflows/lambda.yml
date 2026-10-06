@@ -31,8 +31,13 @@ jobs:
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: eu-west-2
 
-      - name: Deploy Lambda Function 
+      - name: Deploy Lambda Function
         run: |
-         cd lambda
-         zip -r lambda_function.zip .
-         aws lambda update-function-code --function-name my-lambda-function --zip-file fileb://lambda/lambda_function.zip
+          cd lambda
+          pip install -r requirements.txt -t .
+          zip -r lambda_function.zip .
+          aws lambda update-function-code \
+            --function-name my-lambda-function \
+            --zip-file fileb://lambda_function.zip  
+
+
