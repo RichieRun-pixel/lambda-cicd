@@ -9,11 +9,13 @@ on:
     paths:
       - 'cloudformation/**'
 
+permissions:
+  contents: read
+  pull-requests: write    
+
 jobs:
   validate-and-deploy:
     runs-on: ubuntu-latest
-    permissions:
-      pull-requests: write
     steps:
       - uses: actions/checkout@v4
 
@@ -27,12 +29,12 @@ jobs:
       - name: Validate template
         run: |
           aws cloudformation validate-template \
-            --template-body file://cloudformation/s3-bucket.yaml
+            --template-body file://s3-bucket.yaml
 
       - name: Deploy test stack
         run: |
           aws cloudformation deploy \
-            --template-file cloudformation/s3-bucket.yaml \
+            --template-file s3-bucket.yaml \
             --stack-name pr-${{ github.event.pull_request.number }}-test \
             --parameter-overrides Environment=test \
             --capabilities CAPABILITY_IAM
